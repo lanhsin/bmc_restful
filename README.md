@@ -7,14 +7,14 @@ Read data from hardware sensors using libsensors. Get Json fromat data by Restfu
     2. ./go-server
     
 ## Test Restful API
-    <http://localhost:8093/v1/>
-    > BMC Restful API v1!
+    http://localhost:8093/v1/
+    The brower shows "BMC Restful API v1!"
 
-    <http://localhost:8093/openconfig-platform:components/component=hwmon>
-    > Get all howmon devices
+    http://localhost:8093/openconfig-platform:components/component=hwmon
+    The brower shows the results of all howmon devices
 
-    <http://localhost:8093/openconfig-platform:components/component={hwmon_id}>
-    > Get one howmon device
+    http://localhost:8093/openconfig-platform:components/component={hwmon_id}
+    The brower shows the results of one howmon device
 
 ## APIs  
 
