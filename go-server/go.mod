@@ -1,4 +1,4 @@
-module go-server-server
+module go-server
 
 go 1.14
 
