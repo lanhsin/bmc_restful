@@ -2,19 +2,23 @@
 Read data from hardware sensors using libsensors. Get Json fromat data by Restful API.
 
 
-## Run Restful API
-    1. cd ${HOME}/go/bin
-    2. ./go-server
-    
-## Test Restful API
-    http://localhost:8093/v1/
-    The brower shows "BMC Restful API v1!"
+## Usage
 
-    http://localhost:8093/openconfig-platform:components/component=hwmon
-    The brower shows the results of all howmon devices
+#### Server
 
-    http://localhost:8093/openconfig-platform:components/component={hwmon_id}
-    The brower shows the results of one howmon device
+1. cd ${HOME}/go/bin  
+2. ./go-server
+
+#### Client
+
+- http://localhost:8093/v1/  
+The brower shows "BMC Restful API v1!"
+
+- http://localhost:8093/openconfig-platform:components/component=hwmon  
+The brower shows the results of all howmon devices
+
+- http://localhost:8093/openconfig-platform:components/component={hwmon_id}  
+The brower shows the results of one howmon device
 
 ## APIs  
 
@@ -23,19 +27,19 @@ Read data from hardware sensors using libsensors. Get Json fromat data by Restfu
 
 ## Libraries 
 
-#### 1 Libsensors
+#### 1. Libsensors
 - Use lm-sensors lib to parsing /sys/class/hwmon files. libsensors privoide the following APIs to get hwmon strings. 
 
     - int sysfs_read_chips(void)
     - int sysfs_read_one_chip(const char *hwmon_path)
 
-#### 2 Libsensors Header Files
+#### 2. Libsensors Header Files
     libcgocommon/inlcude/capi/access.h
     libcgocommon/inlcude/capi/error.h
     libcgocommon/inlcude/capi/general.h
     libcgocommon/inlcude/capi/sysfs.h
 
-#### 3 Libsensors Source Codes
+#### 3. Libsensors Source Codes
     libcgocommon/src/access.cpp 
     libcgocommon/src/error.cpp
     libcgocommon/src/general.cpp
