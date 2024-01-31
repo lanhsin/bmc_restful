@@ -50,7 +50,7 @@ sensors_lookup_chip(const sensors_chip_name *name)
 		if (sensors_match_chip(&sensors_proc_chips[i].chip, name))
 			return &sensors_proc_chips[i];
 
-	return NULL;
+	return nullptr;
 }
 
 /* Look up a subfeature of the given chip, and return a pointer to it.
@@ -62,7 +62,7 @@ sensors_lookup_subfeature_nr(const sensors_chip_features *chip,
 {
 	if (subfeat_nr < 0 ||
 	    subfeat_nr >= chip->subfeature_count)
-		return NULL;
+		return nullptr;
 	return chip->subfeature + subfeat_nr;
 }
 
@@ -74,7 +74,7 @@ sensors_lookup_feature_nr(const sensors_chip_features *chip, int feat_nr)
 {
 	if (feat_nr < 0 ||
 	    feat_nr >= chip->feature_count)
-		return NULL;
+		return nullptr;
 	return chip->feature + feat_nr;
 }
 
@@ -129,10 +129,10 @@ sensors_get_features(const sensors_chip_name *name, int *nr)
 	const sensors_chip_features *chip;
 
 	if (!(chip = sensors_lookup_chip(name)))
-		return NULL;	/* No such chip */
+		return nullptr;	/* No such chip */
 
 	if (*nr >= chip->feature_count)
-		return NULL;
+		return nullptr;
 	return &chip->feature[(*nr)++];
 }
 
@@ -144,18 +144,18 @@ sensors_get_all_subfeatures(const sensors_chip_name *name,
 	const sensors_subfeature *subfeature;
 
 	if (!(chip = sensors_lookup_chip(name)))
-		return NULL;	/* No such chip */
+		return nullptr;	/* No such chip */
 
 	/* Seek directly to the first subfeature */
 	if (*nr < feature->first_subfeature)
 		*nr = feature->first_subfeature;
 
 	if (*nr >= chip->subfeature_count)
-		return NULL;	/* end of list */
+		return nullptr;	/* end of list */
 	subfeature = &chip->subfeature[(*nr)++];
 	if (subfeature->mapping == feature->number)
 		return subfeature;
-	return NULL;	/* end of subfeature list */
+	return nullptr;	/* end of subfeature list */
 }
 
 const sensors_subfeature *
@@ -164,15 +164,14 @@ sensors_get_subfeature(const sensors_chip_name *name,
 		       sensors_subfeature_type type)
 {
 	const sensors_chip_features *chip;
-	int i;
 
 	if (!(chip = sensors_lookup_chip(name)))
-		return NULL;	/* No such chip */
+		return nullptr;	/* No such chip */
 
-	for (i = feature->first_subfeature; i < chip->subfeature_count &&
+	for (int i = feature->first_subfeature; i < chip->subfeature_count &&
 	     chip->subfeature[i].mapping == feature->number; i++) {
 		if (chip->subfeature[i].type == type)
 			return &chip->subfeature[i];
 	}
-	return NULL;	/* No such subfeature */
+	return nullptr;	/* No such subfeature */
 }

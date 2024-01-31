@@ -1,7 +1,6 @@
 .PHONY: all install build libcgocommon clean
 
-GO := /usr/local/go/bin/go
-export GOROOT=/usr/local/go
+GO := /usr/bin/go
 export GOPATH=$(HOME)/go
 export GOBIN=$(GOPATH)/bin
 export GO111MODULE=on
@@ -28,7 +27,7 @@ $(GOPATH)/src/go-server-server/main.go:
 	cp -r cgocommon        $(GOPATH)/src/cgocommon
 
 libcgocommon:
-	cd libcgocommon && sudo make install
+	cd libcgocommon && make 
 
 clean:
 	rm -rf $(GOPATH)
